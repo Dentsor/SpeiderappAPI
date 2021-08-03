@@ -7,7 +7,7 @@ using SpeiderappAPI.Models;
 
 namespace SpeiderappAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class BadgeController : ControllerBase
     {
@@ -18,14 +18,14 @@ namespace SpeiderappAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Badge
+        // GET: api/v1/Badge
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Badge>>> GetBadges()
         {
             return await _context.BadgeList.ToListAsync();
         }
 
-        // GET: api/Badge/5
+        // GET: api/v1/Badge/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Badge>> GetBadge(long id)
         {
@@ -39,7 +39,7 @@ namespace SpeiderappAPI.Controllers
             return badge;
         }
 
-        // PUT: api/Badge/5
+        // PUT: api/v1/Badge/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -71,7 +71,7 @@ namespace SpeiderappAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Badge
+        // POST: api/v1/Badge
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
@@ -83,7 +83,7 @@ namespace SpeiderappAPI.Controllers
             return CreatedAtAction("GetBadge", new { id = badge.Id }, badge);
         }
 
-        // DELETE: api/Badge/5
+        // DELETE: api/v1/Badge/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Badge>> DeleteBadge(long id)
         {

@@ -1,38 +1,28 @@
-﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
-using System.Xml.Serialization;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SpeiderappAPI.Models
 {
-    public class Badge
+    public class Badge : Requirement
     {
-        public Badge(long id, string name, string image, string type, string description, string author, int rootNode, string createdAt, bool isComplete, string secret)
+        public Badge(string title, string image, string description, DateTime publishTime) : base(description, publishTime)
         {
-            Id = id;
-            Name = name;
+            Title = title;
             Image = image;
-            Type = type;
-            Description = description;
-            Author = author;
-            RootNode = rootNode;
-            CreatedAt = createdAt;
-            IsComplete = isComplete;
-            Secret = secret;
+            Resources = Array.Empty<string>();
         }
+        // public Badge(string title, string image, string description, User author,
+        //     DateTime publishTime) : base(description,
+        //     author, publishTime)
+        // {
+        //     Title = title;
+        //     Image = image;
+        //     Resources = Array.Empty<string>();
+        // }
 
-        public long Id { get; set; }
-        public string Name { get; set; }
+        public string Title { get; set; }
         public string Image { get; set; }
-        public string Type { get; set; }
-        public string Description { get; set; }
-        public string Author { get; set; }
-        public int RootNode { get; set; }
-        public string CreatedAt { get; set; }
-        public List<TaggedWith> TaggedWiths { get; set; }
-        public bool IsComplete { get; set; }
-        [XmlIgnore]
-        [JsonIgnore]
-        public string Secret { get; set; }
-
+        public ICollection<TaggedWith> TaggedWiths { get; set; } = null!;
+        public string[] Resources { get; set; }
     }
 }

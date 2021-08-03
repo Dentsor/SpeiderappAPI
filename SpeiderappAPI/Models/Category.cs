@@ -13,6 +13,6 @@ namespace SpeiderappAPI.Models
 
         public long Id { get; init; }
         public string Title { get; set; }
-        public List<Tag> Tags { get; set; }
+        public List<Tag> Tags { get; set; } = null!;
     }
 }

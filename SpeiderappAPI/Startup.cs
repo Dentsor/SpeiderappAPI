@@ -29,6 +29,11 @@ namespace SpeiderappAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // services.AddMvc()
+            //     .AddJsonOptions(
+            //         options => options.JsonSerializerOptions.ReferenceHandler = Newtonsoft.Json.ReferenceLoopHandling.
+            //     );
+
             services.AddDbContext<DBContext>(opt =>
             {
                 var connectionString = Configuration.GetConnectionString("DefaultConnection") + Configuration.GetValue<string>("SPEIDERAPP:DB_PASS", "");
@@ -37,6 +42,7 @@ namespace SpeiderappAPI
                         Configuration.GetValue<string>("DefaultInMemoryDatabaseName"));
                 else
                     opt.UseNpgsql(connectionString);
+                opt.EnableSensitiveDataLogging(Configuration.GetValue("EnableSensitiveDataLogging", false));
             });
             services.AddControllers();
         }
